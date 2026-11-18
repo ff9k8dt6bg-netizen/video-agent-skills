@@ -1,25 +1,67 @@
 {
   "version": 1,
-  "name": "Signature",
-  "creator": { "lang": "fr" },
-  "colors": { "paper": "#F2F0F7", "ink": "#16141C", "accent": "#6B4EFF" },
-  "font": { "family": "DM Sans" },
-  "display": { "font": "Bricolage Grotesque", "weight": 800, "text": "Bricolage Grotesque" },
-  "paper": { "grain": 0.5, "depth": 1.2 },
-  "captions": { "style": "rise", "font": "Bricolage Grotesque", "weight": 800, "size": 80, "maxWords": 2 },
-  "pace": { "speed": 1.15, "tighten": { "sentence": 0.06, "comma": 0.04, "word": 0.02, "lead": 0.02, "tail": 0.6 } },
+  "name": "Kevin",
+  "creator": {
+    "name": "Kevin",
+    "lang": "fr"
+  },
+  "colors": {
+    "paper": "#0E0E10",
+    "ink": "#F5F3F0",
+    "accent": "#E5202E",
+    "onAccent": "#FFFFFF",
+    "sheet": "#1A1A1E",
+    "line": "#2A2A30"
+  },
+  "font": {
+    "family": "DM Sans"
+  },
+  "display": {
+    "font": "Bricolage Grotesque",
+    "weight": 800,
+    "text": "Bricolage Grotesque"
+  },
+  "paper": {
+    "grain": 0.4,
+    "depth": 1
+  },
+  "captions": {
+    "style": "rise",
+    "font": "Bricolage Grotesque",
+    "weight": 800,
+    "size": 80,
+    "maxWords": 2
+  },
+  "pace": {
+    "speed": 1.15,
+    "tighten": {
+      "sentence": 0.06,
+      "comma": 0.04,
+      "word": 0.02,
+      "lead": 0.02,
+      "tail": 0.6
+    }
+  },
   "visual": "motion",
-  "zoom": { "drift": 0.006 },
-  "music": { "dropOn": "punch" },
-  "mix": { "music": -26, "sfx": -26, "duck": 0.45 },
+  "zoom": {
+    "drift": 0.006
+  },
+  "music": {
+    "dropOn": "punch"
+  },
+  "mix": {
+    "music": -26,
+    "sfx": -26,
+    "duck": 0.45
+  },
   "notes": [
     "Jamais plus de 0,25 s de blanc : chaque respiration est coupée",
     "Un nouvel élément à l'écran toutes les 1,5 à 2,5 s, posé sur le mot qui le nomme",
-    "Alterner trois vues : écran partagé (seam 1160), plein écran caméra (0, 5 s minimum), écran Nuit plein cadre (fond #121016, accent citron #C8FF3D)",
+    "Alterner trois vues : écran partagé (seam 1160), plein écran caméra (0, 5 s minimum), écran Rouge plein cadre (fond #E5202E, texte noir) sur le temps fort",
     "Zoom avant 1,12 maximum sur un mot fort, au plus toutes les 4 s, tenu jusqu'à la coupe suivante",
     "Accroche : mini-histoire en 2 actes avec retournement, lisible dès l'image 1, un impact (impact-boom) sur le mot qui retourne",
     "Bruitages : 3 à 4 par vidéo, uniquement sur les temps forts (impact, thud, pop). Jamais de whoosh, de riser ni de clic d'interface",
     "Chiffres énormes en Bricolage Grotesque 800 qui comptent jusqu'à la valeur, jamais posés à 0",
-    "Ne pas reprendre : bandeau mono noir, orange et cyan avec halo, éclat de verre en accroche"
+    "Ne pas reprendre : bandeau mono noir, orange et cyan avec halo, papier crème, éclat de verre en accroche"
   ]
 }

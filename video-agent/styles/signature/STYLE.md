@@ -1,11 +1,12 @@
-# Guide de montage : [Ton nom]
+# Guide de montage : Kevin
 
 **L'idée :** une vidéo qui ne respire jamais à vide. Il se passe quelque chose toutes les 2 secondes, et chaque chose arrive sur le mot qui la nomme. L'énergie vient des deux vidéos de référence (`video-agent/references/ANALYSE.md`). L'identité visuelle est la tienne.
 
-## Couleurs
-- **Jour** (la plupart du temps) : papier lilas très clair `#F2F0F7`, encre `#16141C`, accent **violet** `#6B4EFF`.
-- **Nuit** (2 ou 3 moments forts par vidéo) : fond `#121016` en plein cadre, accent **citron** `#C8FF3D`.
-- Une seule couleur d'accent à l'écran à la fois. Pas de dégradé, pas de halo néon.
+## Couleurs : noir et rouge
+- **Base** : fond noir texturé `#0E0E10`, texte blanc cassé `#F5F3F0`, accent **rouge** `#E5202E`. Les cartes sont gris anthracite `#1A1A1E`.
+- **Écran Rouge** (2 ou 3 temps forts par vidéo) : le rouge en plein cadre, avec le texte en noir.
+- Le rouge est réservé à un seul mot ou un seul chiffre à la fois. Pas de dégradé, pas de halo néon.
+- Aperçu : `preview.jpg`, dans ce dossier.
 
 ## Typo
 - Titres et chiffres : **Bricolage Grotesque 800**, serrée. Les chiffres sont énormes (250 px et plus) et comptent jusqu'à leur valeur.
@@ -14,7 +15,7 @@
 
 ## Sous-titres
 - **2 mots maximum**, Bricolage 800, 80 px.
-- Le mot prononcé arrive sur un **bloc violet** (citron sur les écrans Nuit) qui apparaît avec un léger flou.
+- Le mot prononcé arrive sur un **bloc rouge** (noir sur les écrans Rouge), en blanc, avec un léger flou.
 - Ils sont placés sur la jointure en écran partagé, et sur la poitrine en plein écran, jamais sur la bouche.
 - Ils sont masqués quand un encart affiche déjà les mêmes mots.
 
@@ -22,9 +23,9 @@
 - **Zéro blanc** : aucun silence de plus de 0,25 s. La vidéo est accélérée à 1,15.
 - **Un nouvel élément toutes les 1,5 à 2,5 s** : un texte qui s'écrit, un compteur, un logo réel, une interface recréée qui agit.
 - **Trois vues en alternance**, changées toutes les 4 à 6 s :
-  1. écran partagé : papier en haut, caméra en bas ;
+  1. écran partagé : fond noir et encart en haut, caméra en bas ;
   2. caméra plein écran, pour une phrase forte, 5 s minimum ;
-  3. écran Nuit plein cadre, pour le chiffre ou la révélation.
+  3. écran Rouge plein cadre, pour le chiffre ou la révélation.
 - Coupes franches, sans fondu. Une idée développée sur plusieurs phrases garde le même encart, qui se complète au lieu de changer.
 
 ## Zooms
@@ -54,6 +55,6 @@
 - La feuille de commentaires est recréée, et le mot s'y tape.
 
 ## À ne pas reprendre des références
-Le bandeau mono noir, l'orange et le cyan avec halo, l'éclat de verre en accroche, le mur et les accessoires de la personne. On garde le rythme, pas la signature.
+Le bandeau mono noir, le papier crème, l'orange et le cyan avec halo, l'éclat de verre en accroche, le mur et les accessoires de la personne. On garde le rythme, pas la signature.
 
 *Pour les réglages du moteur, voir `style.json`, dans ce même dossier.*
