@@ -5,3 +5,5 @@ skills/short-editing/.runtime/
 skills/short-editing/assets/music/*.mp3
 skills/short-editing/assets/icons/*.png
 skills/short-editing/assets/icons/glyph/
+video-agent/.tmp/
+video-agent/references/*.mp4
