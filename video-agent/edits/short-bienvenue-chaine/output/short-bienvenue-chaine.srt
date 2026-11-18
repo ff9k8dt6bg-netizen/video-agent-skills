@@ -1,0 +1,19 @@
+1
+00:00:00,000 --> 00:00:02,850
+Bienvenue sur ma chaîne
+
+2
+00:00:03,050 --> 00:00:05,750
+Content de te voir ici
+
+3
+00:00:06,050 --> 00:00:09,850
+Une nouvelle vidéo chaque semaine
+
+4
+00:00:10,250 --> 00:00:13,450
+Abonne-toi pour tout suivre
+
+5
+00:00:13,750 --> 00:00:15,000
+À très vite

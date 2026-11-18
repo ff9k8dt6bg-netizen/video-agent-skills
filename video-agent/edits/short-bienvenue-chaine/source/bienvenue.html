@@ -1,0 +1,258 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Bienvenue (paper only, 15 s, 1080x1920, transparent over the engine's paper).
+     One tableau that grows: the title lands (hook), glides up as a header, then a player (tap play), a week strip where a new
+     video drops each week, a subscribe button pressed (counter 999 -> 1 000, bell), and the title comes back for the end.
+     Burned-in subtitles (band look of the default style: black chip, mono caps, emphasis light blue), 3 words max, y 1300.
+     window.setT(t) draws the state at t seconds, pure function of t. -->
+<style>
+  html, body { margin: 0; background: transparent; }
+  body { width: 1080px; height: 1920px; overflow: hidden; position: relative; -webkit-font-smoothing: antialiased;
+    font-family: "SF Pro", Inter, system-ui, sans-serif; color: #14161B; }
+  .abs { position: absolute; }
+  #title { left: 0; top: 0; width: 1080px; height: 1px; }
+  #l1 { position: absolute; left: 0; width: 1080px; text-align: center; font-size: 176px; font-weight: 800; letter-spacing: -6px; white-space: nowrap; }
+  #l1 span { display: inline-block; }
+  #l2 { position: absolute; left: 0; width: 1080px; text-align: center; font-size: 124px; font-weight: 800; letter-spacing: -4px; white-space: nowrap; }
+  #l2 span { display: inline-block; }
+  #chaine { color: #258EFF; position: relative; }
+  #ul { position: absolute; left: 0; bottom: -10px; height: 14px; border-radius: 7px; background: #258EFF; }
+  .card { background: #FCFBF8; border-radius: 34px; box-shadow: 0 1px 0 rgba(20,22,27,.06), 0 10px 26px rgba(20,22,27,.10), 0 30px 70px rgba(20,22,27,.08);
+    border: 1px solid #E3DED3; box-sizing: border-box; }
+  /* player */
+  #player { left: 140px; top: 520px; width: 800px; height: 560px; }
+  #screen { position: absolute; left: 28px; top: 28px; width: 744px; height: 418px; border-radius: 20px; background: #14161B; overflow: hidden; }
+  #scrtxt { position: absolute; left: 0; top: 150px; width: 744px; text-align: center; color: #FCFBF8; font-size: 64px; font-weight: 800; letter-spacing: -2px; }
+  #playdisc { position: absolute; left: 302px; top: 139px; width: 140px; height: 140px; border-radius: 70px; background: #258EFF; }
+  #bar { position: absolute; left: 40px; top: 486px; width: 720px; height: 14px; border-radius: 7px; background: #E3DED3; overflow: hidden; }
+  #barf { position: absolute; left: 0; top: 0; height: 14px; background: #258EFF; border-radius: 7px; }
+  #time { position: absolute; left: 40px; top: 510px; font-size: 34px; font-weight: 600; color: #5C5F68; }
+  /* week strip */
+  #week { left: 60px; top: 560px; width: 960px; height: 660px; }
+  #weekLbl { position: absolute; left: 0; top: 0; width: 960px; text-align: center; font-size: 56px; font-weight: 800; letter-spacing: -1.5px; }
+  #weekNum { color: #258EFF; display: inline-block; min-width: 40px; }
+  #days { position: absolute; left: 0; top: 110px; width: 960px; height: 360px; overflow: hidden; }
+  .day { position: absolute; top: 0; width: 124px; height: 340px; border-radius: 24px; background: #FCFBF8; border: 1px solid #E3DED3; box-sizing: border-box; }
+  .day b { position: absolute; left: 0; top: 22px; width: 124px; text-align: center; font-size: 36px; font-weight: 700; color: #A19F98; letter-spacing: 0; }
+  .vid { position: absolute; left: 10px; width: 104px; height: 186px; border-radius: 16px; background: #14161B; overflow: hidden; }
+  .vid i { position: absolute; left: 32px; top: 73px; width: 40px; height: 40px; border-radius: 20px; background: #258EFF; }
+  .vid i:after { content: ""; position: absolute; left: 15px; top: 11px; border-left: 15px solid #fff; border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
+  .tag { position: absolute; left: -2px; top: 282px; font-size: 26px !important; width: 108px; text-align: center; font-size: 34px; font-weight: 800; color: #258EFF; letter-spacing: -1px; }
+  /* subscribe */
+  #sub { left: 90px; top: 560px; width: 900px; height: 470px; }
+  #avatar { position: absolute; left: 60px; top: 60px; width: 150px; height: 150px; border-radius: 75px; background: #258EFF; }
+  #avatar:after { content: ""; position: absolute; left: 58px; top: 47px; border-left: 46px solid #FCFBF8; border-top: 28px solid transparent; border-bottom: 28px solid transparent; }
+  #chName { position: absolute; left: 250px; top: 70px; font-size: 64px; font-weight: 800; letter-spacing: -2px; }
+  #subs { position: absolute; left: 250px; top: 152px; font-size: 42px; font-weight: 600; color: #5C5F68; white-space: nowrap; }
+  #subsN { display: inline-block; color: #14161B; font-weight: 800; }
+  #btn { position: absolute; left: 60px; top: 280px; width: 620px; height: 130px; border-radius: 65px; }
+  #btnBg { position: absolute; inset: 0; border-radius: 65px; }
+  #btnTxt { position: absolute; left: 0; top: 0; width: 620px; height: 130px; display: flex; align-items: center; justify-content: center; gap: 18px;
+    font-size: 54px; font-weight: 800; letter-spacing: -1px; white-space: nowrap; }
+  #bell { position: absolute; left: 720px; top: 290px; width: 110px; height: 110px; border-radius: 55px; border: 3px solid #E3DED3; box-sizing: border-box; background: #FCFBF8; }
+  #cursor { position: absolute; left: 0; top: 0; width: 70px; height: 90px; }
+  /* end */
+  #bye { left: 0; width: 1080px; text-align: center; font-size: 72px; font-weight: 700; color: #5C5F68; letter-spacing: -1.5px; }
+  #bye b { color: #258EFF; font-weight: 800; }
+  /* subtitles: band look */
+  #cap { left: 0; top: 1290px; width: 1080px; text-align: center; }
+  #capChip { display: inline-block; background: #111111; color: #FFFFFF; font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 800;
+    font-size: 60px; letter-spacing: -1.2px; text-transform: uppercase; padding: 14px 30px 16px; border-radius: 12px; white-space: nowrap;
+    box-shadow: 0 8px 22px rgba(0,0,0,.22); }
+  #capChip em { font-style: normal; color: #5EA8FF; }
+</style></head>
+<body>
+  <div id="title" class="abs">
+    <div id="l1"></div>
+    <div id="l2"><span id="w1">sur</span> <span id="w2">ma</span> <span id="chaine">chaîne<i id="ul"></i></span></div>
+  </div>
+
+  <div id="player" class="abs card">
+    <div id="screen"><div id="scrtxt">Épisode 1</div>
+      <div id="playdisc"><svg width="140" height="140" viewBox="0 0 140 140"><path id="playTri" d="M56 42 L100 70 L56 98 Z" fill="#fff"/>
+        <g id="pauseBars" fill="#fff"><rect x="50" y="44" width="14" height="52" rx="4"/><rect x="76" y="44" width="14" height="52" rx="4"/></g></svg></div>
+    </div>
+    <div id="bar"><div id="barf"></div></div>
+    <div id="time">0:00</div>
+  </div>
+
+  <div id="week" class="abs">
+    <div id="weekLbl">Semaine <span id="weekNum">1</span></div>
+    <div id="days"></div>
+  </div>
+
+  <div id="sub" class="abs card">
+    <div id="avatar"></div>
+    <div id="chName">Ma chaîne</div>
+    <div id="subs"><span id="subsN">999</span> abonnés</div>
+    <div id="btn"><div id="btnBg"></div><div id="btnTxt"><svg id="chk" width="56" height="56" viewBox="0 0 56 56"><path id="chkP" d="M12 29 L24 41 L45 16" fill="none" stroke="#258EFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="btnLbl">S'abonner</span></div></div>
+    <div id="bell"><svg width="104" height="104" viewBox="0 0 104 104" style="position:absolute;left:0;top:0">
+      <path id="bellP" d="M52 26 C40 26 33 35 33 47 L33 60 L27 68 L77 68 L71 60 L71 47 C71 35 64 26 52 26 Z" fill="none" stroke="#14161B" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M44 74 C45 80 59 80 60 74" fill="none" stroke="#14161B" stroke-width="5" stroke-linecap="round" id="bellC"/></svg></div>
+  </div>
+
+  <svg id="cursor" viewBox="0 0 70 90"><path d="M8 4 L8 70 L24 56 L36 84 L48 79 L36 52 L58 52 Z" fill="#14161B" stroke="#FCFBF8" stroke-width="5" stroke-linejoin="round"/></svg>
+
+  <div id="bye" class="abs">À très <b>vite</b></div>
+
+  <div id="cap" class="abs"><span id="capChip"></span></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const S = (x, w) => x <= 0 ? 0 : 1 - (1 + w * x) * Math.exp(-w * x);          // critically damped, no overshoot
+const sm = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x);
+const leave = (t, at, d = .26) => 1 - sm((t - at) / d);                          // clean exit to exactly 0
+const lerp = (a, b, k) => a + (b - a) * k;
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+
+// title letters
+const WORD = 'Bienvenue';
+$('l1').innerHTML = [...WORD].map(c => `<span>${c}</span>`).join('');
+const L = [...$('l1').children];
+
+// week strip: 3 weeks of 7 days, scrolled
+const DAYS = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+const VID_DAY = 3;   // a new video every Thursday
+const dayW = 136;
+let html = '';
+for (let w = 0; w < 3; w++) for (let d = 0; d < 7; d++) {
+  html += `<div class="day" style="left:${(w * 7 + d) * dayW + 6}px"><b>${DAYS[d]}</b>` +
+    (d === VID_DAY ? `<div class="vid" id="v${w}"><i></i></div><div class="tag" id="tg${w}">Nouveau</div>` : '') + `</div>`;
+}
+$('days').innerHTML = html;
+
+// subtitles: [from, to, html]
+const CAPS = [
+  [0.00, 1.25, 'Bienvenue'],
+  [1.25, 2.85, 'sur ma <em>chaîne</em>'],
+  [3.05, 4.15, 'Content de'],
+  [4.15, 5.75, 'te voir <em>ici</em>'],
+  [6.05, 7.85, 'Une nouvelle <em>vidéo</em>'],
+  [7.85, 9.85, '<em>chaque</em> semaine'],
+  [10.25, 11.55, '<em>Abonne-toi</em>'],
+  [11.55, 13.45, 'pour tout suivre'],
+  [13.75, 15.00, 'À très <em>vite</em>'],
+];
+
+function setT(t) {
+  // ---- title: letters rise (already moving on frame 0), then glide up as a header, then back at the end
+  const T0 = -0.55;
+  L.forEach((s, i) => {
+    const k = S(t - (T0 + i * .07), 11);
+    s.style.opacity = clamp(k * 1.4, 0, 1);
+    s.style.transform = `translateY(${(1 - k) * 90}px)`;
+  });
+  const w1 = S(t - .95, 12), w2 = S(t - 1.1, 12), w3 = S(t - 1.4, 12);
+  [[$('w1'), w1], [$('w2'), w2], [$('chaine'), w3]].forEach(([e, k]) => { e.style.opacity = clamp(k * 1.4, 0, 1); e.style.transform = `translateY(${(1 - k) * 70}px)`; });
+  $('ul').style.width = `${sm((t - 1.75) / .5) * 100}%`;
+  // header position: center (y 640) -> top (y 300, scale .5) at 2.95 -> center again at 13.65
+  const up = S(t - 2.95, 9), back = S(t - 13.65, 9);
+  const pos = up * (1 - back);
+  const y = lerp(640, 300, pos), sc = lerp(1, .5, pos);
+  $('title').style.transform = `translateY(${y}px) scale(${sc})`;
+  $('title').style.transformOrigin = '540px 0';
+  $('l1').style.top = '-150px';
+  $('l2').style.top = '50px';
+
+  // ---- act 2: player (3.05 -> 5.85)
+  const pIn = S(t - 3.05, 11), pOut = leave(t, 5.85);
+  $('player').style.opacity = pIn * pOut;
+  $('player').style.transform = `translateY(${(1 - pIn) * 80 - (1 - pOut) * 40}px)`;
+  // cursor taps play at 4.35
+  const tapAt = 4.35;
+  const play = t >= tapAt;
+  $('playTri').style.display = play ? 'none' : 'block';
+  $('pauseBars').style.display = play ? 'block' : 'none';
+  const press = t > tapAt - .08 && t < tapAt + .14 ? .95 : 1;
+  $('playdisc').style.transform = `scale(${press})`;
+  const prog = clamp((t - tapAt) / 9, 0, 1) * .62 + (t >= tapAt ? .02 : 0);
+  $('barf').style.width = `${prog * 100}%`;
+  const secs = Math.max(0, Math.floor((t - tapAt) * 1)) * (t >= tapAt ? 1 : 0);
+  $('time').textContent = `0:${String(secs).padStart(2, '0')}`;
+    $('playdisc').style.opacity = 1 - sm((t - tapAt - .35) / .25);
+  $('scrtxt').style.opacity = sm((t - tapAt - .5) / .3);
+  $('scrtxt').style.transform = `translateY(${(1 - S(t - tapAt - .5, 12)) * 30}px)`;
+
+  // ---- act 3: week strip (6.05 -> 9.95)
+  const wIn = S(t - 6.05, 11), wOut = leave(t, 9.95);
+  $('week').style.opacity = wIn * wOut;
+  $('week').style.transform = `translateY(${(1 - wIn) * 80 - (1 - wOut) * 40}px)`;
+  // scroll to week 2 at 7.95, week 3 at 9.0
+  const sc2 = S(t - 7.95, 10), sc3 = S(t - 9.0, 12);
+  const scroll = (sc2 + sc3) * 7 * dayW;
+  $('days').firstChild && [...$('days').children].forEach((d, i) => d.style.transform = `translateX(${-scroll}px)`);
+  const drops = [6.6, 8.35, 9.3];
+  drops.forEach((at, w) => {
+    const k = S(t - at, 13);
+    const v = $('v' + w), g = $('tg' + w);
+    v.style.top = `${lerp(-220, 82, k)}px`;
+    v.style.opacity = k > 0 ? 1 : 0;
+    g.style.opacity = sm((t - at - .25) / .25);
+  });
+  const wk = t < 8.1 ? 1 : t < 9.1 ? 2 : 3;
+  $('weekNum').textContent = wk;
+
+  // ---- act 4: subscribe (10.25 -> 13.5)
+  const sIn = S(t - 10.25, 11), sOut = leave(t, 13.5);
+  $('sub').style.opacity = sIn * sOut;
+  $('sub').style.transform = `translateY(${(1 - sIn) * 80 - (1 - sOut) * 40}px)`;
+  const pressAt = 11.3;
+  const done = t >= pressAt;
+  const bp = t > pressAt - .1 && t < pressAt + .12 ? .95 : 1;
+  $('btn').style.transform = `scale(${bp})`;
+  const mk = sm((t - pressAt) / .3);
+  $('btnBg').style.background = done ? '#E6F0FD' : '#14161B';
+  $('btnTxt').style.color = done ? '#1D6FD6' : '#FCFBF8';
+  $('btnLbl').textContent = done ? 'Abonné' : "S'abonner";
+  $('chk').style.display = done ? 'block' : 'none';
+  $('chkP').style.strokeDasharray = 60; $('chkP').style.strokeDashoffset = 60 * (1 - sm((t - pressAt - .05) / .35));
+  // counter 999 -> 1 000
+  const n = t < pressAt + .1 ? 999 : 1000;
+  $('subsN').textContent = n === 1000 ? '1 000' : '999';
+  $('subsN').style.transform = `translateY(${n === 1000 ? (1 - S(t - pressAt - .1, 16)) * 30 : 0}px)`;
+  // bell fills at 12.55
+  const bellAt = 12.55, bk = sm((t - bellAt) / .3);
+  $('bellP').setAttribute('fill', bk > 0 ? `rgba(37,142,255,${bk})` : 'none');
+  $('bellP').setAttribute('stroke', bk > .5 ? '#258EFF' : '#14161B');
+  $('bellC').setAttribute('stroke', bk > .5 ? '#258EFF' : '#14161B');
+  $('bell').style.borderColor = bk > .5 ? '#258EFF' : '#E3DED3';
+  $('bell').style.transform = `scale(${t > bellAt - .1 && t < bellAt + .12 ? .95 : 1})`;
+
+  // ---- cursor: in for the play tap (3.6 -> 5.6) and the subscribe + bell taps (10.6 -> 13.3)
+  // tip positions in page px
+  const subX = 90 + 60 + 310, subY = 560 + 280 + 80, bellX = 90 + 720 + 55, bellY = 560 + 290 + 62;
+  const playX = 140 + 28 + 372, playY = 520 + 28 + 225;
+  let cx, cy, co;
+  if (t < 8) {
+    const k = S(t - 3.6, 7);
+    cx = lerp(1000, playX, k); cy = lerp(1400, playY, k);
+    co = sm((t - 3.6) / .2) * leave(t, 5.5);
+  } else {
+    const k1 = S(t - 10.6, 7), k2 = S(t - 12.0, 8);
+    cx = lerp(lerp(1000, subX, k1), bellX, k2); cy = lerp(lerp(1450, subY, k1), bellY, k2);
+    co = sm((t - 10.6) / .2) * leave(t, 13.2);
+  }
+  const cpress = (t > tapAt - .08 && t < tapAt + .14) || (t > pressAt - .1 && t < pressAt + .12) || (t > bellAt - .1 && t < bellAt + .12) ? .92 : 1;
+  $('cursor').style.transform = `translate(${cx - 8}px, ${cy - 4}px) scale(${cpress})`;
+  $('cursor').style.opacity = co;
+
+  // ---- end: "À très vite" under the title
+  const byeK = S(t - 14.0, 11);
+  $('bye').style.top = `${lerp(1010, 960, byeK)}px`;
+  $('bye').style.opacity = byeK;
+
+  // ---- subtitles
+  const c = CAPS.find(([a, b]) => t >= a && t < b) || (t >= 15 ? CAPS[CAPS.length - 1] : null);
+  const chip = $('capChip');
+  if (c) {
+    chip.innerHTML = c[2];
+    const k = sm((t - c[0]) / .12);
+    chip.style.opacity = c[0] === 0 ? 1 : k;
+    chip.style.transform = `translateY(${(1 - k) * (c[0] === 0 ? 0 : 10)}px)`;
+    chip.style.visibility = 'visible';
+  } else chip.style.visibility = 'hidden';
+}
+window.setT = setT;
+setT(0);
+</script>
+</body></html>
