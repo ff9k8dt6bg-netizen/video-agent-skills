@@ -1,0 +1,402 @@
+[
+ {
+  "text": "Le",
+  "start": 0.1,
+  "end": 0.3125
+ },
+ {
+  "text": "ciel",
+  "start": 0.325,
+  "end": 0.5375
+ },
+ {
+  "text": "n'est",
+  "start": 0.55,
+  "end": 0.6625
+ },
+ {
+  "text": "pas",
+  "start": 0.675,
+  "end": 0.8125
+ },
+ {
+  "text": "vraiment",
+  "start": 0.825,
+  "end": 1.1625
+ },
+ {
+  "text": "bleu",
+  "start": 1.175,
+  "end": 1.4625
+ },
+ {
+  "text": "Et",
+  "start": 2.325,
+  "end": 2.475
+ },
+ {
+  "text": "pourtant",
+  "start": 2.4875,
+  "end": 2.95
+ },
+ {
+  "text": "tu",
+  "start": 3.2375,
+  "end": 3.3625
+ },
+ {
+  "text": "le",
+  "start": 3.375,
+  "end": 3.4625
+ },
+ {
+  "text": "vois",
+  "start": 3.475,
+  "end": 3.65
+ },
+ {
+  "text": "bleu",
+  "start": 3.6625,
+  "end": 3.9625
+ },
+ {
+  "text": "La",
+  "start": 4.8375,
+  "end": 5.0125
+ },
+ {
+  "text": "lumière",
+  "start": 5.025,
+  "end": 5.325
+ },
+ {
+  "text": "du",
+  "start": 5.3375,
+  "end": 5.45
+ },
+ {
+  "text": "Soleil",
+  "start": 5.4625,
+  "end": 5.775
+ },
+ {
+  "text": "est",
+  "start": 5.7875,
+  "end": 5.8375
+ },
+ {
+  "text": "blanche",
+  "start": 5.85,
+  "end": 6.3
+ },
+ {
+  "text": "elle",
+  "start": 6.4875,
+  "end": 6.5875
+ },
+ {
+  "text": "contient",
+  "start": 6.6,
+  "end": 6.9625
+ },
+ {
+  "text": "toutes",
+  "start": 6.975,
+  "end": 7.2
+ },
+ {
+  "text": "les",
+  "start": 7.2125,
+  "end": 7.2875
+ },
+ {
+  "text": "couleurs",
+  "start": 7.3,
+  "end": 7.8625
+ },
+ {
+  "text": "En",
+  "start": 8.7375,
+  "end": 8.8875
+ },
+ {
+  "text": "traversant",
+  "start": 8.9,
+  "end": 9.4125
+ },
+ {
+  "text": "l'air",
+  "start": 9.425,
+  "end": 9.7125
+ },
+ {
+  "text": "elle",
+  "start": 10.0625,
+  "end": 10.15
+ },
+ {
+  "text": "percute",
+  "start": 10.1625,
+  "end": 10.55
+ },
+ {
+  "text": "des",
+  "start": 10.5625,
+  "end": 10.6625
+ },
+ {
+  "text": "milliards",
+  "start": 10.675,
+  "end": 11.0375
+ },
+ {
+  "text": "de",
+  "start": 11.05,
+  "end": 11.1625
+ },
+ {
+  "text": "minuscules",
+  "start": 11.175,
+  "end": 11.65
+ },
+ {
+  "text": "molécules",
+  "start": 11.6625,
+  "end": 12.325
+ },
+ {
+  "text": "Et",
+  "start": 13.1875,
+  "end": 13.3375
+ },
+ {
+  "text": "ces",
+  "start": 13.35,
+  "end": 13.475
+ },
+ {
+  "text": "molécules",
+  "start": 13.4875,
+  "end": 13.95
+ },
+ {
+  "text": "dévient",
+  "start": 13.9625,
+  "end": 14.2375
+ },
+ {
+  "text": "surtout",
+  "start": 14.25,
+  "end": 14.5625
+ },
+ {
+  "text": "le",
+  "start": 14.575,
+  "end": 14.6875
+ },
+ {
+  "text": "bleu",
+  "start": 14.7,
+  "end": 15.0
+ },
+ {
+  "text": "dont",
+  "start": 15.2875,
+  "end": 15.425
+ },
+ {
+  "text": "l'onde",
+  "start": 15.4375,
+  "end": 15.65
+ },
+ {
+  "text": "est",
+  "start": 15.6625,
+  "end": 15.7125
+ },
+ {
+  "text": "plus",
+  "start": 15.725,
+  "end": 15.8875
+ },
+ {
+  "text": "courte",
+  "start": 15.9,
+  "end": 16.375
+ },
+ {
+  "text": "Ce",
+  "start": 17.25,
+  "end": 17.4875
+ },
+ {
+  "text": "bleu",
+  "start": 17.5,
+  "end": 17.6625
+ },
+ {
+  "text": "rebondit",
+  "start": 17.675,
+  "end": 18.075
+ },
+ {
+  "text": "partout",
+  "start": 18.0875,
+  "end": 18.5
+ },
+ {
+  "text": "et",
+  "start": 18.8375,
+  "end": 18.9125
+ },
+ {
+  "text": "arrive",
+  "start": 18.925,
+  "end": 19.1625
+ },
+ {
+  "text": "dans",
+  "start": 19.175,
+  "end": 19.3
+ },
+ {
+  "text": "tes",
+  "start": 19.3125,
+  "end": 19.45
+ },
+ {
+  "text": "yeux",
+  "start": 19.4625,
+  "end": 19.625
+ },
+ {
+  "text": "de",
+  "start": 19.6375,
+  "end": 19.7625
+ },
+ {
+  "text": "tous",
+  "start": 19.775,
+  "end": 19.9125
+ },
+ {
+  "text": "les",
+  "start": 19.925,
+  "end": 20.0
+ },
+ {
+  "text": "côtés",
+  "start": 20.0125,
+  "end": 20.5
+ },
+ {
+  "text": "Le",
+  "start": 21.3625,
+  "end": 21.5875
+ },
+ {
+  "text": "soir",
+  "start": 21.6,
+  "end": 21.9625
+ },
+ {
+  "text": "la",
+  "start": 22.3125,
+  "end": 22.4125
+ },
+ {
+  "text": "lumière",
+  "start": 22.425,
+  "end": 22.725
+ },
+ {
+  "text": "traverse",
+  "start": 22.7375,
+  "end": 23.1375
+ },
+ {
+  "text": "beaucoup",
+  "start": 23.15,
+  "end": 23.4625
+ },
+ {
+  "text": "plus",
+  "start": 23.475,
+  "end": 23.725
+ },
+ {
+  "text": "d'air",
+  "start": 23.7375,
+  "end": 24.075
+ },
+ {
+  "text": "le",
+  "start": 24.2625,
+  "end": 24.3625
+ },
+ {
+  "text": "bleu",
+  "start": 24.375,
+  "end": 24.5625
+ },
+ {
+  "text": "se",
+  "start": 24.575,
+  "end": 24.7125
+ },
+ {
+  "text": "perd",
+  "start": 24.725,
+  "end": 24.9125
+ },
+ {
+  "text": "en",
+  "start": 24.925,
+  "end": 24.9875
+ },
+ {
+  "text": "route",
+  "start": 25.0,
+  "end": 25.425
+ },
+ {
+  "text": "Il",
+  "start": 26.3,
+  "end": 26.45
+ },
+ {
+  "text": "ne",
+  "start": 26.4625,
+  "end": 26.55
+ },
+ {
+  "text": "reste",
+  "start": 26.5625,
+  "end": 26.85
+ },
+ {
+  "text": "que",
+  "start": 26.8625,
+  "end": 26.9625
+ },
+ {
+  "text": "l'orange",
+  "start": 26.975,
+  "end": 27.3125
+ },
+ {
+  "text": "et",
+  "start": 27.325,
+  "end": 27.35
+ },
+ {
+  "text": "le",
+  "start": 27.3625,
+  "end": 27.45
+ },
+ {
+  "text": "rouge",
+  "start": 27.4625,
+  "end": 27.9
+ }
+]
